@@ -12,10 +12,11 @@ def main():
 		return a
 
 	board = initialize()
+	temp_board = initialize()
 	#pprint(board)
 	
 	def find_open_spot(row, required_number, num_repeats, stop_after_match=True):
-		i = 0
+		i = random.randrange(0, 9 - num_repeats)
 		while i < len(row):
 			if [required_number]*num_repeats == row[i:i + num_repeats]:
 				row[i:i+num_repeats] = [1]*num_repeats
@@ -26,16 +27,53 @@ def main():
 				i += 1
 		return row
 	
-	def test():
+	def white_space(temp_board, x, y):
+		counter = 0
+		
+		i_start = x-1
+		i_end = x+2
+		j_start = y-1
+		j_end = y+2
+
+		if i_start < 0:
+			i_start = 0
+
+		if i_end > 9:
+			i_end = 9
+
+		if j_start < 0:
+			j_start = 0
+
+		if j_end > 9:
+			j_end = 9
+
+		for i in range(i_start, i_end):
+			for j in range(j_start, j_end):
+				if i==x and j==y: 
+					pass
+				elif temp_board[i][j] == 1:
+					temp_board[i][j] = 2
+					counter += 1
+					
+		pprint(temp_board)	
+	
+	def format_ship(n):
 		i = random.randrange(0, 9)
 		init = board[i]
-		x = find_open_spot(init, 0, 4)
-		board[i] = x
+		ship = find_open_spot(init, 0, n)
+		temp_board[i] = ship
+		
+		for i in xrange(10):
+		      for j in xrange(10):
+		        white_space(temp_board, i, j)
+		
+		# board = white_space(temp_board, i)
+		
 		return board
 
-	new_board = test()
+	new_ship = format_ship(3)
 	
-	pprint(new_board)
+	#pprint(new_ship)
 	
 	"""
 	row = [1,  ,  ,  , 0,  ,  ,  ,  , 0]
