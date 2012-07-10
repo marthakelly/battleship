@@ -36,27 +36,30 @@ def main():
 		for i in range(i_start, i_end):
 			for j in range(j_start, j_end):
 				if temp_board[i][j] == 1:
+					
 					if int == 0:
 						temp_board[i + 1][j] = 2
+					elif int == 9:
+						temp_board[i - 1][j] = 2
 					else:
 						temp_board[i - 1][j] = 2
 						temp_board[i + 1][j] = 2
+
 					if temp_board[i][j + 1] == 0:
 						temp_board[i][j + 1] = 2
 					if temp_board[i][j - 1] == 0:
 						temp_board[i][j - 1] = 2
 				
 		return temp_board
-		
-	
+
 	def format_ship(n):
-		int = random.randrange(0, 9)
+		int = random.randrange(0, 10)
 		init = board[int]
 		ship = find_open_spot(init, 0, n)
 		temp_board[int] = ship
 		
-		for j in range(1, 8):
-			for k in range(1, 8):
+		for j in range(0, 8):
+			for k in range(0, 8):
 				white_space(temp_board, int, j, k)
 				
 		return board
