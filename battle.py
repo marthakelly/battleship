@@ -27,35 +27,24 @@ def main():
 				i += 1
 		return row
 	
-	def white_space(temp_board, x, y):
-		counter = 0
+	def white_space(temp_board, x, y):	
+		i_start = x - 1
+		i_end = x + 2
+		j_start = y - 1
+		j_end = y + 2
 		
-		i_start = x-1
-		i_end = x+2
-		j_start = y-1
-		j_end = y+2
-
-		if i_start < 0:
-			i_start = 0
-
-		if i_end > 9:
-			i_end = 9
-
-		if j_start < 0:
-			j_start = 0
-
-		if j_end > 9:
-			j_end = 9
-
 		for i in range(i_start, i_end):
 			for j in range(j_start, j_end):
-				if i==x and j==y: 
-					pass
-				elif temp_board[i][j] == 1:
-					temp_board[i][j] = 2
-					counter += 1
-					
-		pprint(temp_board)	
+				if temp_board[i][j] == 1:
+					temp_board[i - 1][j] = 2
+					temp_board[i + 1][j] = 2
+					if temp_board[i][j + 1] == 0:
+						temp_board[i][j + 1] = 2
+					if temp_board[i][j - 1] == 0:
+						temp_board[i][j - 1] = 2
+				
+		pprint(temp_board)
+		
 	
 	def format_ship(n):
 		i = random.randrange(0, 9)
@@ -63,18 +52,14 @@ def main():
 		ship = find_open_spot(init, 0, n)
 		temp_board[i] = ship
 		
-		for i in xrange(10):
-		      for j in xrange(10):
-		        white_space(temp_board, i, j)
-		
-		# board = white_space(temp_board, i)
-		
+		for i in range(1, 8):
+			for j in range(1, 8):
+				white_space(temp_board, i, j)
+				
 		return board
 
 	new_ship = format_ship(3)
-	
-	#pprint(new_ship)
-	
+		
 	"""
 	row = [1,  ,  ,  , 0,  ,  ,  ,  , 0]
 	row = [1,  , 1, 1,  , 1, 1, 1, 1,  ]
@@ -106,4 +91,8 @@ if __name__ == "__main__":
 	
 """
 
-# [2, 2, 2]
+# find whitespace
+# check cols
+# connect on a network
+# figure out how two boards connect 
+# output miss or hit to console
