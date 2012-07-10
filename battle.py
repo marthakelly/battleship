@@ -13,7 +13,6 @@ def main():
 
 	board = initialize()
 	temp_board = initialize()
-	#pprint(board)
 	
 	def find_open_spot(row, required_number, num_repeats, stop_after_match=True):
 		i = random.randrange(0, 9 - num_repeats)
@@ -27,7 +26,8 @@ def main():
 				i += 1
 		return row
 	
-	def white_space(temp_board, x, y):	
+	def white_space(temp_board, int, x, y):	
+		pprint(int)
 		i_start = x - 1
 		i_end = x + 2
 		j_start = y - 1
@@ -36,46 +36,40 @@ def main():
 		for i in range(i_start, i_end):
 			for j in range(j_start, j_end):
 				if temp_board[i][j] == 1:
-					temp_board[i - 1][j] = 2
-					temp_board[i + 1][j] = 2
+					if int == 0:
+						temp_board[i + 1][j] = 2
+					else:
+						temp_board[i - 1][j] = 2
+						temp_board[i + 1][j] = 2
 					if temp_board[i][j + 1] == 0:
 						temp_board[i][j + 1] = 2
 					if temp_board[i][j - 1] == 0:
 						temp_board[i][j - 1] = 2
 				
-		pprint(temp_board)
+		return temp_board
 		
 	
 	def format_ship(n):
-		i = random.randrange(0, 9)
-		init = board[i]
+		int = random.randrange(0, 9)
+		init = board[int]
 		ship = find_open_spot(init, 0, n)
-		temp_board[i] = ship
+		temp_board[int] = ship
 		
-		for i in range(1, 8):
-			for j in range(1, 8):
-				white_space(temp_board, i, j)
+		for j in range(1, 8):
+			for k in range(1, 8):
+				white_space(temp_board, int, j, k)
 				
 		return board
 
-	new_ship = format_ship(3)
-		
-	"""
-	row = [1,  ,  ,  , 0,  ,  ,  ,  , 0]
-	row = [1,  , 1, 1,  , 1, 1, 1, 1,  ]
-	row = [1,  ,  ,  , 1,  ,  ,  ,  , 0]
-	row = [1,  , 0,  , 1,  , 0, 0, 0, 0]
-	row = [1,  , 0,  , 1,  , 0, 0, 0, 0]
-	row = [ , 0, 0, 0,  , 0, 0, 0,  ,  ]
-	row = [0, 0, 0, 0, 0, 0, 0,  , 1,  ]
-	row = [0, 0, 0,  ,  ,  ,  ,  , 1,  ]
-	row = [0, 0,  , 0, 0, 0, 0,  , 1,  ]
-	row = [0, 0, 0,  ,  ,  ,  , 0,  , 0]
-	"""
+	#ship_list = [5, 4, 3, 3, 2]
+	ship_list = [5]
 	
-	#row = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-		
-	#print find_open_spot(row, 0, 4)
+	for i in ship_list:
+		new_ship = format_ship(i)
+		i = i + 1
+			
+	board = temp_board
+	pprint(board)
 	
 if __name__ == "__main__":
 	main()
