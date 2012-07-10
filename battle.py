@@ -37,19 +37,27 @@ def main():
 				ship = temp_board[i][j]
 				
 				if ship == 1:
-					if int == 0:
-						temp_board[i + 1][j] = 2
-					elif int == 9:
-						temp_board[i - 1][j] = 2
-					else:	
-						temp_board[i + 1][j] = 2
-						temp_board[i - 1][j] = 2
+					temp_board[i - 1][j] = 2
+					temp_board[i + 1][j] = 2
 					
-					if temp_board[i][j + 1] == 0 and temp_board[i][j + 1] != 2:
+					if temp_board[int][0] == 1:
+						temp_board[int][9] = 0
+					
+					if temp_board[int][9] == 1:
+						temp_board[int][0] = 0
+							
+					if temp_board[i][j - 1] == 0:
+						temp_board[i][j - 1] = 2
+					
+					if temp_board[i][j + 1] == 0:
 						temp_board[i][j + 1] = 2
 					
-					if temp_board[i][j - 1] == 0 and temp_board[i][j - 1] != 2:
-						temp_board[i][j - 1] = 2
+					if int == 0:
+						temp_board[i - 1][j] = 0
+					
+					if int == 9:
+						temp_board[i + 1][j] = 0
+						
 
 		return temp_board
 
@@ -63,15 +71,15 @@ def main():
 			for k in range(0, 8):
 				white_space(temp_board, int, j, k)
 
-		return board
+		return temp_board
 
-	ship_list = [5, 4, 3, 3, 2]
+	#ship_list = [5, 4, 3, 3, 2]
+	ship_list = [5]
 	
-	for i in ship_list:
-		new_ship = format_ship(i)
-		print i
+	for k in ship_list:
+		print k
+		format_ship(k)
 		board = temp_board
-		i = i + 1
 			
 	pprint(board)
 	
