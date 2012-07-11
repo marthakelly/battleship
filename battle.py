@@ -12,7 +12,6 @@ def main():
 		return a
 
 	board = initialize()
-	temp_board = initialize()
 	
 	def find_open_spot(row, required_number, num_repeats, stop_after_match=True):
 		i = random.randrange(0, 9 - num_repeats)
@@ -25,80 +24,27 @@ def main():
 			else:
 				i += 1
 		return row
-	
-	def white_space(temp_board, int, x, y):	
-		i_start = x - 1
-		i_end = x + 2
-		j_start = y - 1
-		j_end = y + 2
 		
-		for i in range(i_start, i_end):
-			for j in range(j_start, j_end):
-				ship = temp_board[i][j]
-				
-				if ship == 1:
-					temp_board[i - 1][j] = 2
-					temp_board[i + 1][j] = 2
-					
-					if temp_board[int][0] == 1:
-						temp_board[int][9] = 0
-					
-					if temp_board[int][9] == 1:
-						temp_board[int][0] = 0
-							
-					if temp_board[i][j - 1] == 0:
-						temp_board[i][j - 1] = 2
-					
-					if temp_board[i][j + 1] == 0:
-						temp_board[i][j + 1] = 2
-					
-					if int == 0:
-						temp_board[i - 1][j] = 0
-					
-					if int == 9:
-						temp_board[i + 1][j] = 0
-						
-
-		return temp_board
-
-	def format_ship(n):
-		int = random.randrange(0, 10)
-		init = board[int]
-		ship = find_open_spot(init, 0, n)
-		temp_board[int] = ship
+	def white_space(board):
 		
-		for j in range(0, 8):
-			for k in range(0, 8):
-				white_space(temp_board, int, j, k)
+		for row in board: 
+			print row
+			for item in row:
+				if item == 1:
+					print row[item]
+			
+	def place_ship(n):
+		i = random.randrange(0, 10)
+		init = board[i]
+		add_ship = find_open_spot(init, 0, n)
+		board[i] = add_ship
+		
+		white_space(board)
 
-		return temp_board
-
-	#ship_list = [5, 4, 3, 3, 2]
 	ship_list = [5]
 	
-	for k in ship_list:
-		print k
-		format_ship(k)
-		board = temp_board
-			
-	pprint(board)
-	
+	for i in ship_list:
+		place_ship(i)
+
 if __name__ == "__main__":
 	main()
-	
-	
-"""
-	Type of ship		Size
-	aircraft carrier	5
-	battleship			4
-	submarine			3
-	destroyer			3
-	patrol boat			2
-	
-"""
-
-# find whitespace
-# check cols
-# connect on a network
-# figure out how two boards connect 
-# output miss or hit to console
