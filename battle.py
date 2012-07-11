@@ -1,50 +1,46 @@
 from pprint import pprint
 import random
 
-def main():
-	def initialize():
-		a  = []
-		
-		for i in xrange(10):
-			a.append([])
-			for j in xrange(10):
-				a[i].append(0)
-		return a
-
-	board = initialize()
+def new_board(rows = 3, columns = 3, default_value = 0):
+	board = [] 
 	
-	def find_open_spot(row, required_number, num_repeats, stop_after_match=True):
-		i = random.randrange(0, 9 - num_repeats)
-		while i < len(row):
-			if [required_number]*num_repeats == row[i:i + num_repeats]:
-				row[i:i+num_repeats] = [1]*num_repeats
-				i += num_repeats
-				if stop_after_match:
-					break
-			else:
-				i += 1
-		return row
-		
-	def white_space(board):
-		
-		for row in board: 
-			print row
-			for item in row:
-				if item == 1:
-					print row[item]
-			
-	def place_ship(n):
-		i = random.randrange(0, 10)
-		init = board[i]
-		add_ship = find_open_spot(init, 0, n)
-		board[i] = add_ship
-		
-		white_space(board)
+	for i in range(rows):
+		board.append([default_value] * columns)
+	return board
 
-	ship_list = [5]
+def fire_shot(x, y, default_value, board):
+	board[x][y] = default_value
+
+def find_open_spot(row, blank_space, ship, first_match=True):
+	i = random.randrange(0, 9 - ship)
+	while i < len(row):
+		if [blank_space]*ship == row[i:i + ship]:
+			row[i:i+ship] = [1]*ship
+			i += ship
+			if first_match:
+				break
+		else:
+			i += 1
+	return row
+
+def place_ship(ship):
+	i = random.randrange(0, 10)
+	row = battleship[i]
 	
-	for i in ship_list:
-		place_ship(i)
+	add_ship = find_open_spot(row, 0, ship)
+	battleship[i] = add_ship
+	
+	print ship
 
-if __name__ == "__main__":
-	main()
+battleship = new_board(10, 10)
+
+ships = [5, 4, 3, 3, 2]
+
+for ship in ships:
+	place_ship(ship)
+
+pprint(battleship)
+
+#fire_shot(1, 1, 5, battleship)
+
+# make sure ships dont overlap and have white space around them
