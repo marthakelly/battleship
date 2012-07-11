@@ -8,8 +8,6 @@ def new_board(rows = 3, columns = 3, default_value = 0):
 		board.append([default_value] * columns)
 	return board
 
-battleship = new_board(10, 10)
-
 def fire_shot(x, y, default_value, board):
 	board[x][y] = default_value
 
@@ -34,12 +32,12 @@ def place_ship(ship):
 	
 	print ship
 
-ship_list = [5, 4, 3, 3, 2]
+battleship = new_board(10, 10)
 
-for i in ship_list:
-	place_ship(i)
-	
-#place_ship(battleship)
+ships = [5, 4, 3, 3, 2]
+
+for ship in ships:
+	place_ship(ship)
 
 pprint(battleship)
 
