@@ -43,4 +43,7 @@ pprint(battleship)
 
 #fire_shot(1, 1, 5, battleship)
 
-# make sure ships dont overlap and have white space around them
+# to do:
+# work out vertical placement
+# connect over a local network
+# detect collision
