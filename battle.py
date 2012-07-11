@@ -22,12 +22,12 @@ def find_open_spot(row, blank_space, ship, first_match=True):
 		else:
 			i += 1
 	
-	placement = [i for i in range(len(row)) if row[i] == 1]
+	placement = [j for j in range(len(row)) if row[j] == 1]
 	
 	# get the index for this particular ship
 	
-	for j in placement:
-		print [i, j]
+	for k in placement:
+		print [i, k]
 
 	return row
 
@@ -35,13 +35,13 @@ def place_ship(ship):
 	i = random.randrange(0, 10)
 	row = battleship[i]
 	
-	add_ship = find_open_spot(row, 0, ship[0])
+	add_ship = find_open_spot(row, 0, ship)
 	battleship[i] = add_ship
 
 battleship = new_board(10, 10)
 
-#ships = [5, 4, 3, 3, 2]
-ships = [[5, "destroyer"]]
+ships = [5, 4, 3, 3, 2]
+#ships = [[5, "destroyer"]]
 
 for ship in ships:
 	place_ship(ship)
