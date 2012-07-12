@@ -115,9 +115,19 @@ battleship = new_board(10, 10)
 ships = [5, 4, 3, 3, 2]
 
 place_ship(ships[0])
-#battleship = transform_board(battleship)
+battleship = transform_board(battleship)
+
+for item in aircraft_carrier:
+	item.reverse()
+
 place_ship(ships[1])
 place_ship(ships[2])
+
+#battleship = transform_board(battleship)
+
+#for item in submarine:
+#	item.reverse()
+
 place_ship(ships[3])
 place_ship(ships[4])
 
