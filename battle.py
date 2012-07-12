@@ -29,8 +29,10 @@ def fire_shot():
 			for spot in ship:
 				if spot == [x, y]:
 					ship.remove(spot)
-					print "hit!"
-		
+					print "\033[95m" + "hit!" + "\033[0m"
+					battleship[x][y] = 5
+					#print '\033[95m' + '5' + '\033[0m'
+					
 		if len(all_ships) == 0:
 			print "You Win!"
 			sys.exit()
@@ -48,9 +50,9 @@ def fire_shot():
 				elif all_ships.index(ship) == 4:
 					print "You sunk the patrol boat!"
 	else:
-		print "miss!"
+		print "\033[93m" + "miss!" + "\033[0m"
+		battleship[x][y] = 5
 		
-	battleship[x][y] = 5
 	pprint(battleship)
 	fire_shot()
 
