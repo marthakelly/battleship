@@ -101,55 +101,46 @@ def main():
 		
 		return row
 	
-	def transform_board(battleship):
+	def transform_board(battleship, ship_length):
 		a = battleship
 		battleship = new_board()
-		for i in range(10):
-			for j in range(10):
+		for i in xrange(10):
+			for j in xrange(10):
 				battleship[i][j] = a[j][i]
-
+		
 		return battleship
 
 	def place_ship(ship):
 		i = random.randrange(0, 10)
 		row = battleship[i]
-	
 		add_ship = find_open_spot(row, i, 0, ship)
 		battleship[i] = add_ship
-	
 		return battleship
 
 	#init battleship board
 	battleship = new_board(10, 10)
-
+	
+	#init ships to be placed
 	ships = [5, 4, 3, 3, 2]
-
-	place_ship(ships[0])
-	battleship = transform_board(battleship)
-
-	for item in aircraft_carrier:
-		item.reverse()
-
-	place_ship(ships[1])
-	place_ship(ships[2])
-
-	#battleship = transform_board(battleship)
-
-	#for item in submarine:
-	#	item.reverse()
-
-	place_ship(ships[3])
-	place_ship(ships[4])
-
-	pprint(battleship)
+	
+	for i in xrange(5):
+		battleship = place_ship(ships[i])
+		if (int(round(random.random())) == 1):
+			battleship = transform_board(battleship, i)
 
 	print 'aircraft carrier', aircraft_carrier
 	print 'battle ship', battle_ship
 	print 'submarine', submarine
 	print 'destroyer', destroyer
 	print 'patrol boat', patrol_boat
-
+	
+	pprint(battleship)
 	fire_shot()
 
 if __name__ == "__main__":
     main()
+
+# left to do
+# obsfucate the game board to the player
+# show the 'hit' as a different color
+# map the transformed x, y coords correctly
