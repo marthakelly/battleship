@@ -28,6 +28,8 @@ def main():
 		
 		if battleship[x][y] == 1:
 			print "\033[95m" + "hit!" + "\033[0m"		
+		elif battleship[x][y] == 5:
+			print "\033[91m" + "already hit there!" + "\033[0m"			
 		else:
 			print "\033[93m" + "miss!" + "\033[0m"
 		
@@ -158,6 +160,5 @@ if __name__ == "__main__":
 # left to do
 # obsfucate the game board to the player
 # show the 'hit' as a different color
-# map the transformed x, y coords correctly
 # add use case where you can't fire where you've already fired
 # game over is not working
