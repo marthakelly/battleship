@@ -107,7 +107,22 @@ def main():
 		for i in xrange(10):
 			for j in xrange(10):
 				battleship[i][j] = a[j][i]
-		
+				
+		for i in aircraft_carrier:
+			i.reverse()	
+			
+		for i in battle_ship:
+			i.reverse()
+
+		for i in submarine:
+			i.reverse()
+			
+		for i in destroyer:
+			i.reverse()
+			
+		for i in patrol_boat:
+			i.reverse()
+			
 		return battleship
 
 	def place_ship(ship):
@@ -144,3 +159,5 @@ if __name__ == "__main__":
 # obsfucate the game board to the player
 # show the 'hit' as a different color
 # map the transformed x, y coords correctly
+# add use case where you can't fire where you've already fired
+# game over is not working
