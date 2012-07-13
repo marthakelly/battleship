@@ -49,27 +49,33 @@ def main():
 				if len(ship) == 0:
 					if all_ships.index(ship) == 0:
 						print "You sunk the aircraft carrier!"
+						break
 					elif all_ships.index(ship) == 1:
 						print "You sunk the battle ship!"
+						break
 					elif all_ships.index(ship) == 2:
 						print "You sunk the submarine!"
+						break
 					elif all_ships.index(ship) == 3:
 						print "You sunk the destroyer!"
+						break
 					elif all_ships.index(ship) == 4:
 						print "You sunk the patrol boat!"
-
+						break
+			
 			if len(all_ships) == 0:
 				print "You Win!"
 				sys.exit()
 
 	def find_open_spot(row, row_number, required_number, num_repeats, stop_after_match=True):
 		i = random.randrange(0, 9 - num_repeats)
+	
 		while i < len(row):                   
 			if [required_number]*num_repeats == row[i:i + num_repeats]:
 				row[i:i+num_repeats] = [1]*num_repeats                  
-				
-				placement = [k for k in range(len(row)) if row[k] == 'x']
-				
+
+				placement = [k for k in range(len(row)) if row[k] == '1']
+
 				if num_repeats == 5:
 					for coords in xrange(5):
 						aircraft_carrier.append([row_number, i+coords])
