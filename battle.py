@@ -28,14 +28,17 @@ def main():
 		
 		if battleship[x][y] == 1:
 			print "\033[95m" + "hit!" + "\033[0m"		
+			battleship[x][y] = 5
+			viewer[x][y] = 5
 		elif battleship[x][y] == 5:
 			print "\033[91m" + "already hit there!" + "\033[0m"			
 		else:
 			print "\033[93m" + "miss!" + "\033[0m"
+			battleship[x][y] = 7
+			viewer[x][y] = 7
 		
 		track_hits(x, y)
-		battleship[x][y] = 5
-		pprint(battleship)
+		pprint(viewer)
 		fire_shot()
 
 	def track_hits(x, y):
@@ -136,6 +139,9 @@ def main():
 
 	#init battleship board
 	battleship = new_board(10, 10)
+
+	#init viewers board
+	viewer = new_board(10, 10)
 	
 	#init ships to be placed
 	ships = [5, 4, 3, 3, 2]
@@ -145,20 +151,21 @@ def main():
 		if (int(round(random.random())) == 1):
 			battleship = transform_board(battleship, i)
 
-	print 'aircraft carrier', aircraft_carrier
-	print 'battle ship', battle_ship
-	print 'submarine', submarine
-	print 'destroyer', destroyer
-	print 'patrol boat', patrol_boat
+	#print 'aircraft carrier', aircraft_carrier
+	#print 'battle ship', battle_ship
+	#print 'submarine', submarine
+	#print 'destroyer', destroyer
+	#print 'patrol boat', patrol_boat
 	
-	pprint(battleship)
+	pprint(viewer)
 	fire_shot()
 
 if __name__ == "__main__":
-    main()
+	print 'Directions: Game board is 10 zero indexed rows, 10 zero indexed columns. Enter x, y coordinates to fire a shot. A hit is indicated by 5, a miss by 7.'
+	main()
 
 # left to do
-# obsfucate the game board to the player
 # show the 'hit' as a different color
-# add use case where you can't fire where you've already fired
 # game over is not working
+# obsfucate the game board to the player
+# eventually support AI from computer
