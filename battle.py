@@ -151,11 +151,11 @@ def main():
 			battleship = transform_board(battleship, i)
 
 	# debugging
-	print 'aircraft carrier', aircraft_carrier
-	print 'battle ship', battle_ship
-	print 'submarine', submarine
-	print 'destroyer', destroyer
-	print 'patrol boat', patrol_boat
+	#print 'aircraft carrier', aircraft_carrier
+	#print 'battle ship', battle_ship
+	#print 'submarine', submarine
+	#print 'destroyer', destroyer
+	#print 'patrol boat', patrol_boat
 	
 	pprint(viewer)
 	fire_shot()
