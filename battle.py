@@ -21,11 +21,11 @@ def main():
 	def fire_shot():
 		print "Select x, y coordinates to fire a shot."
 		
-		fire = input("You may fire when ready: ")
+		fire =  input('You may fire when ready: ')
 		
 		x = fire[0]
 		y = fire[1]
-		
+				
 		if battleship[x][y] == 1:
 			print "\033[95m" + "hit!" + "\033[0m"		
 			battleship[x][y] = 5
@@ -43,8 +43,7 @@ def main():
 
 	def track_hits(x, y):
 		all_ships = [aircraft_carrier] + [battle_ship] + [submarine] + [destroyer] + [patrol_boat]
-		
-		if battleship[x][y] == 1:
+		if battleship[x][y] == 5:
 			for ship in all_ships:
 				for spot in ship:
 					if spot == [x, y]:
@@ -151,11 +150,12 @@ def main():
 		if (int(round(random.random())) == 1):
 			battleship = transform_board(battleship, i)
 
-	#print 'aircraft carrier', aircraft_carrier
-	#print 'battle ship', battle_ship
-	#print 'submarine', submarine
-	#print 'destroyer', destroyer
-	#print 'patrol boat', patrol_boat
+	# debugging
+	print 'aircraft carrier', aircraft_carrier
+	print 'battle ship', battle_ship
+	print 'submarine', submarine
+	print 'destroyer', destroyer
+	print 'patrol boat', patrol_boat
 	
 	pprint(viewer)
 	fire_shot()
@@ -165,7 +165,8 @@ if __name__ == "__main__":
 	main()
 
 # left to do
-# show the 'hit' as a different color
 # game over is not working
-# obsfucate the game board to the player
+# displaying the sunk ship seems to not work
+# add error handling for wrong user input
 # eventually support AI from computer
+# add x, y numbers to help with coordinate selection
