@@ -12,10 +12,8 @@ def main():
 
 	def new_board(rows = 10, columns = 10, default_value = 0):
 		board = []
-
 		for i in xrange(rows):
 			board.append([default_value] * columns)
-
 		return board
 
 	def fire_shot():
