@@ -1,7 +1,7 @@
 battleship
 ========
 
-### battleship in your python interpreter!
+battleship in your python interpreter!
 
 ### highlight:
 matrix transformations were used to randomly generate ship positions vertically and horizontally
